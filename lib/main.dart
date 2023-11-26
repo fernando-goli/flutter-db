@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              Task('Teste 1', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Teste 2', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Teste 3', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Teste 4', ''),
-              Task('Teste 5', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Teste 6', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
-              Task('Teste 7', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+              Task('Teste 1', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 3),
+              Task('Teste 2', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 4),
+              Task('Teste 3', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 1),
+              Task('Teste 4', '', 2),
+              Task('Teste 5', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 5),
+              Task('Teste 6', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 2),
+              Task('Teste 7', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large', 3),
             ],
           ),
           floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -40,8 +40,9 @@ class MyApp extends StatelessWidget {
 class Task extends StatefulWidget {
   final String nome;
   final String photo;
+  final int difficulty;
 
-  const Task(this.nome, this.photo, {super.key});
+  const Task(this.nome, this.photo, this.difficulty, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -96,11 +97,11 @@ class _TaskState extends State<Task> {
                             )),
                         Row(
                           children: [
-                            Icon(Icons.star, size: 15, color: Colors.blue,),
-                            Icon(Icons.star, size: 15, color: Colors.blue,),
-                            Icon(Icons.star, size: 15, color: Colors.blue,),
-                            Icon(Icons.star, size: 15, color: Colors.blue[100],),
-                            Icon(Icons.star, size: 15, color: Colors.blue[100],),
+                            Icon(Icons.star, size: 15, color: widget.difficulty >= 1 ? Colors.blue : Colors.blue[100],),
+                            Icon(Icons.star, size: 15, color: widget.difficulty >= 2 ? Colors.blue : Colors.blue[100],),
+                            Icon(Icons.star, size: 15, color: widget.difficulty >= 3 ? Colors.blue : Colors.blue[100],),
+                            Icon(Icons.star, size: 15, color: widget.difficulty >= 4 ? Colors.blue : Colors.blue[100],),
+                            Icon(Icons.star, size: 15, color: widget.difficulty >= 5 ? Colors.blue : Colors.blue[100],),
                           ],
                         )
                       ],
@@ -128,7 +129,7 @@ class _TaskState extends State<Task> {
                     child: SizedBox(
                         width: 200,
                         child: LinearProgressIndicator(
-                          value: _counter / 10,
+                          value: widget.difficulty > 0 ? (_counter / widget.difficulty) / 10 : 1,
                         )),
                   ),
                   Padding(
