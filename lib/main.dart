@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool opacity = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,36 +26,44 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Tarefas"),
           ),
-          body: ListView(
-            children: [
-              Task(
-                  'Teste 1',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  3),
-              Task(
-                  'Teste 2',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  4),
-              Task(
-                  'Teste 3',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  1),
-              Task('Teste 4', '', 2),
-              Task(
-                  'Teste 5',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  5),
-              Task(
-                  'Teste 6',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  2),
-              Task(
-                  'Teste 7',
-                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                  3),
-            ],
+          body: AnimatedOpacity(
+            duration: const Duration(seconds: 1),
+            opacity: opacity ? 1 : 0,
+            child: ListView(
+              children: [
+                Task(
+                    'Teste 1',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    3),
+                Task(
+                    'Teste 2',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    4),
+                Task(
+                    'Teste 3',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    1),
+                Task('Teste 4', '', 2),
+                Task(
+                    'Teste 5',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    5),
+                Task(
+                    'Teste 6',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    2),
+                Task(
+                    'Teste 7',
+                    'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                    3),
+              ],
+            ),
           ),
-          floatingActionButton: FloatingActionButton(onPressed: () {}),
+          floatingActionButton: FloatingActionButton(onPressed: () {
+            setState(() {
+              opacity = !opacity;
+            });
+          }),
         )
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
