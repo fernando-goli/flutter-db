@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project1/rate_star.dart';
 
 void main() {
   runApp(MyApp());
@@ -141,45 +142,7 @@ class _TaskState extends State<Task> {
                                   fontSize: 18,
                                   overflow: TextOverflow.ellipsis),
                             )),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: widget.difficulty >= 1
-                                  ? Colors.blue
-                                  : Colors.blue[100],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: widget.difficulty >= 2
-                                  ? Colors.blue
-                                  : Colors.blue[100],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: widget.difficulty >= 3
-                                  ? Colors.blue
-                                  : Colors.blue[100],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: widget.difficulty >= 4
-                                  ? Colors.blue
-                                  : Colors.blue[100],
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: widget.difficulty >= 5
-                                  ? Colors.blue
-                                  : Colors.blue[100],
-                            ),
-                          ],
-                        )
+                        RateStar(difficulty: widget.difficulty)
                       ],
                     ),
                     Container(
