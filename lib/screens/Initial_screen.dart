@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'Task.dart';
+import '../components/Task.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -22,7 +21,7 @@ class _InitialScreenState extends State<InitialScreen> {
         duration: const Duration(seconds: 1),
         opacity: opacity ? 1 : 0,
         child: ListView(
-          children: [
+          children: const [
             Task(
                 'Teste 1',
                 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',

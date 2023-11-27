@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project1/rate_star.dart';
+import 'package:project1/components/rate_star.dart';
 
 class Task extends StatefulWidget {
   final String nome;
@@ -64,7 +64,7 @@ class _TaskState extends State<Task> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                             width: 200,
                             child: Text(
                               widget.nome,
@@ -75,7 +75,7 @@ class _TaskState extends State<Task> {
                         RateStar(difficulty: widget.difficulty)
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       height: 60,
                       child: ElevatedButton(
                         onPressed: () {

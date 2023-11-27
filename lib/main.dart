@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'Initial_screen.dart';
+import 'screens/Initial_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +16,7 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: InitialScreen()
+        home: const InitialScreen()
         //home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
   }
