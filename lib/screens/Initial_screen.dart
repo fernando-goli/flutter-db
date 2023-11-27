@@ -24,6 +24,7 @@ class _InitialScreenState extends State<InitialScreen> {
           children: const [
             Task(
                 'Teste 1',
+                //assets/images/....png
                 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
                 3),
             Task(
