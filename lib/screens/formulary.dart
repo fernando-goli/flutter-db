@@ -12,9 +12,13 @@ class _FormularyScreenState extends State<FormularyScreen> {
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
 
+  final  _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Form(
+      key: _formKey,
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('Nova tarefa'),
         ),
@@ -35,6 +39,12 @@ class _FormularyScreenState extends State<FormularyScreen> {
                     child: TextFormField(
                       controller: nameController,
                       textAlign: TextAlign.center,
+                      validator: (String? value) {
+                        if (value != null && value.isEmpty) {
+                          return 'Insira o nome da tarefa';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Nome',
@@ -47,6 +57,14 @@ class _FormularyScreenState extends State<FormularyScreen> {
                     child: TextFormField(
                       controller: difficultyController,
                       textAlign: TextAlign.center,
+                      validator: (value) {
+                        if (value!.isEmpty ||
+                            int.parse(value) < 1 ||
+                            int.parse(value) > 5) {
+                          return 'Insira a dificuldade entre 1 e 5';
+                        }
+                        return null;
+                      },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -60,6 +78,12 @@ class _FormularyScreenState extends State<FormularyScreen> {
                     child: TextFormField(
                       onChanged: (text) {
                         setState(() {});
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Insira uma url da imagem';
+                        }
+                        return null;
                       },
                       keyboardType: TextInputType.url,
                       controller: imageController,
@@ -97,7 +121,11 @@ class _FormularyScreenState extends State<FormularyScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-
+                      if(_formKey.currentState!.validate()){
+                        print(nameController.text);
+                        print(difficultyController.text);
+                        print(imageController.text);
+                      }
                     },
                     child: Text('Adicionar'),
                   ),
@@ -106,6 +134,7 @@ class _FormularyScreenState extends State<FormularyScreen> {
             ),
           ),
         ),
+      ),
     );
   }
 }
