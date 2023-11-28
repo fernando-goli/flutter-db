@@ -12,7 +12,7 @@ class _FormularyScreenState extends State<FormularyScreen> {
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
 
-  final  _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +121,14 @@ class _FormularyScreenState extends State<FormularyScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
+                      if (_formKey.currentState!.validate()) {
                         print(nameController.text);
                         print(difficultyController.text);
                         print(imageController.text);
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Salvando tarefa'),
+                        ));
                       }
                     },
                     child: Text('Adicionar'),
