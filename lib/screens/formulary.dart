@@ -129,6 +129,7 @@ class _FormularyScreenState extends State<FormularyScreen> {
                             .showSnackBar(const SnackBar(
                           content: Text('Salvando tarefa'),
                         ));
+                        Navigator.pop(context);
                       }
                     },
                     child: Text('Adicionar'),
