@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project1/data/taskInherited.dart';
 
 class FormularyScreen extends StatefulWidget {
-  const FormularyScreen ({Key? key, required this.taskContext}) : super(key: key);
+  const FormularyScreen({Key? key, required this.taskContext})
+      : super(key: key);
 
   final BuildContext taskContext;
 
@@ -16,6 +17,22 @@ class _FormularyScreenState extends State<FormularyScreen> {
   TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  bool valueValidatorInt(String? value) {
+    if (value != null && value.isEmpty) {
+      if (int.parse(value) < 1 || int.parse(value) > 5) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +60,7 @@ class _FormularyScreenState extends State<FormularyScreen> {
                       controller: nameController,
                       textAlign: TextAlign.center,
                       validator: (String? value) {
-                        if (value != null && value.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira o nome da tarefa';
                         }
                         return null;
@@ -60,10 +77,8 @@ class _FormularyScreenState extends State<FormularyScreen> {
                     child: TextFormField(
                       controller: difficultyController,
                       textAlign: TextAlign.center,
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            int.parse(value) < 1 ||
-                            int.parse(value) > 5) {
+                      validator: (String? value) {
+                        if (valueValidatorInt(value)) {
                           return 'Insira a dificuldade entre 1 e 5';
                         }
                         return null;
@@ -82,8 +97,8 @@ class _FormularyScreenState extends State<FormularyScreen> {
                       onChanged: (text) {
                         setState(() {});
                       },
-                      validator: (value) {
-                        if (value!.isEmpty) {
+                      validator: (String? value) {
+                        if (valueValidator(value)) {
                           return 'Insira uma url da imagem';
                         }
                         return null;

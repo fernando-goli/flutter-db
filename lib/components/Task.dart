@@ -6,14 +6,16 @@ class Task extends StatefulWidget {
   final String photo;
   final int difficulty;
 
-  const Task(this.nome, this.photo, this.difficulty, {super.key});
+  Task(this.nome, this.photo, this.difficulty, {super.key});
+
+  int _counter = 0;
 
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int _counter = 0;
+
 
   bool assetOrNetwork() {
     if (widget.photo.contains("asset")) {
@@ -24,7 +26,7 @@ class _TaskState extends State<Task> {
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      widget._counter++;
     });
   }
 
@@ -112,14 +114,14 @@ class _TaskState extends State<Task> {
                         width: 200,
                         child: LinearProgressIndicator(
                           value: widget.difficulty > 0
-                              ? (_counter / widget.difficulty) / 10
+                              ? (widget._counter / widget.difficulty) / 10
                               : 1,
                         )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "nivel: $_counter",
+                      "nivel: ${widget._counter}",
                       style: const TextStyle(color: Colors.white),
                     ),
                   )
