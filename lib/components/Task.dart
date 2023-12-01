@@ -15,6 +15,13 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   int _counter = 0;
 
+  bool assetOrNetwork() {
+    if (widget.photo.contains("asset")) {
+      return true;
+    }
+    return false;
+  }
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -54,11 +61,16 @@ class _TaskState extends State<Task> {
                       height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.network(
-                        //child: Image.asset(
-                          widget.photo,
-                          fit: BoxFit.cover,
-                        ),
+                        child: assetOrNetwork()
+                            ? Image.asset(
+                                //child: Image.asset(
+                                widget.photo,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.photo,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Column(
