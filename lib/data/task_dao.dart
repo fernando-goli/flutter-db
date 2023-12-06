@@ -45,7 +45,14 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String name) async {}
+  delete(String name) async {
+    final Database db = await getDatabase();
+    return db.delete(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [name],
+    );
+  }
 
   List<Task> toList(List<Map<String, dynamic>> mapTask) {
     final List<Task> tasks = [];
