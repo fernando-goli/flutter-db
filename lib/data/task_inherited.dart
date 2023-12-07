@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/Task.dart';
+import '../components/tarefa.dart';
 
 class TaskInherited extends InheritedWidget {
   TaskInherited({
@@ -36,7 +36,7 @@ class TaskInherited extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(TaskInherited old) {
-    return old.taskList.length != taskList.length;
+  bool updateShouldNotify(TaskInherited oldWidget) {
+    return oldWidget.taskList.length != taskList.length;
   }
 }

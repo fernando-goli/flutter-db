@@ -1,6 +1,6 @@
 import 'package:project1/data/database.dart';
 import 'package:sqflite/sqflite.dart';
-import '../components/Task.dart';
+import '../components/tarefa.dart';
 
 class TaskDao {
   static const String _tablename = 'taskTable';

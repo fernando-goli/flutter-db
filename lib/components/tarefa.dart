@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project1/components/rate_star.dart';
+import 'package:project1/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String nome;
@@ -95,6 +96,9 @@ class _TaskState extends State<Task> {
                       child: ElevatedButton(
                         onPressed: () {
                           _incrementCounter();
+                        },
+                        onLongPress: (){
+                          TaskDao().delete(widget.nome);
                         },
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project1/data/taskInherited.dart';
+import 'package:project1/components/tarefa.dart';
+import 'package:project1/data/task_dao.dart';
 
 class FormularyScreen extends StatefulWidget {
   const FormularyScreen({Key? key, required this.taskContext})
@@ -140,10 +141,11 @@ class _FormularyScreenState extends State<FormularyScreen> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        TaskInherited.of(widget.taskContext).newTask(
-                            nameController.text,
-                            imageController.text,
-                            int.parse(difficultyController.text));
+                        TaskDao().save(Task(
+                          nameController.text,
+                          imageController.text,
+                          int.parse(difficultyController.text),
+                        ));
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           content: Text('Criando uma nova tarefa'),
@@ -151,7 +153,7 @@ class _FormularyScreenState extends State<FormularyScreen> {
                         Navigator.pop(context);
                       }
                     },
-                    child: Text('Adicionar'),
+                    child: const Text('Adicionar'),
                   ),
                 ],
               ),

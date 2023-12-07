@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project1/data/taskInherited.dart';
+import 'package:project1/data/task_inherited.dart';
 import 'screens/Initial_screen.dart';
 
 void main() {
